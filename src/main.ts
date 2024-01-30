@@ -1,4 +1,5 @@
-import express from "express";
+import express from 'express';
+import { db, firestore } from '../banco_de_dados/firebase';
 
 const app = express();
 
