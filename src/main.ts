@@ -3,8 +3,24 @@ import { db, firestore } from '../banco_de_dados/firebase';
 
 const app = express();
 
+app.get("/",(req, res) =>{
+    res.send("Bem vindo a minha primeira API sua corna KAKAKAKAK!")
+});
 
+app.post("/usuario", async (req, res)=> {
+    const usuario  = req.body.nome
 
-app.listen(3000,function() {
-    console.log("serviço rodando em http://localhost:3000")
+    try {
+        const docRef = await firestore.addDoc(firestore.collection(db, "usuarios"),{
+            nome: Nome,
+        })
+        res.send(docRef.id)
+    } catch (e) {
+        console.log(e) 
+        res.status(500).send(e)
+    }
+})
+
+app.listen(3000,function() { 
+ console.log("serviço rodando em http://localhost:3000")
 });
